@@ -1,0 +1,26 @@
+{
+  "name": "boom-shop-backend",
+  "version": "1.0.0",
+  "description": "Boom shop",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "boom-shop-backend",
+    "boom-shop",
+    "marketplace"
+  ],
+  "author": "Will Marco",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
