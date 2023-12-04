@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import { create } from "express-handlebars";
+import AuthRoutes from "./routes/auth.js";
+import ProductsRoutes from "./routes/products.js";
 
 const app = express();
 dotenv.config();
@@ -13,9 +15,8 @@ app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 app.set("views", "./views");
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use(AuthRoutes);
+app.use(ProductsRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
