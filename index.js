@@ -1,4 +1,4 @@
-import express from "express";
+import express, { static as static_, urlencoded } from "express";
 import dotenv from "dotenv";
 import { create } from "express-handlebars";
 import AuthRoutes from "./routes/auth.js";
@@ -14,6 +14,8 @@ const hbs = create({
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 app.set("views", "./views");
+app.use(static_("public"));
+app.use(urlencoded({ extended: true }));
 
 app.use(AuthRoutes);
 app.use(ProductsRoutes);
