@@ -1,4 +1,5 @@
 import { Router } from "express";
+import bcrypt from "bcrypt";
 import User from "../models/User.js";
 
 const router = Router();
@@ -24,7 +25,8 @@ router.post("/login", (req, res) => {
 
 router.post("/register", async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
-  const userData = { firstname, lastname, email, password };
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const userData = { firstname, lastname, email, password: hashedPassword };
   const user = await User.create(userData);
   console.log(user);
   res.redirect("/");
