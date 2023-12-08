@@ -2,6 +2,9 @@ import express, { json, static as static_, urlencoded } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { create } from "express-handlebars";
+import flash from "connect-flash";
+import session from "express-session";
+
 // ROUTES
 import AuthRoutes from "./routes/auth.js";
 import ProductsRoutes from "./routes/products.js";
@@ -18,6 +21,8 @@ app.set("views", "./views");
 app.use(static_("public"));
 app.use(urlencoded({ extended: true }));
 app.use(json());
+app.use(session({secret: "will", resave: false, saveUninitialized: false}));
+app.use(flash());
 
 app.use(AuthRoutes);
 app.use(ProductsRoutes);
