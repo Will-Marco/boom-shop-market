@@ -25,27 +25,33 @@
 				<a class='me-3 py-2 text-dark text-decoration-none' href='/add'>Add</a>
 				{{/if}}
 
+				{{#if token}}
+					<button type='button' class='btn btn-danger'>
+						<a class='py-2 text-dark text-decoration-none' href='/logout'>Log out</a>
+					</button>
+				{{else}}
 				<div class='btn-group' role='group' aria-label='Basic mixed styles example'>
 						{{#if isLoginPage}}
 					<button type='button' class='btn btn-info active'>
-						<a class='me-3 py-2 text-dark' href='/login'>Login</a>
+						<a class='py-2 text-dark' href='/login'>Login</a>
 					</button>
 						{{else}}
 					<button type='button' class='btn btn-info'>
-						<a class='me-3 py-2 text-dark text-decoration-none' href='/login'>Login</a>
+						<a class='py-2 text-dark text-decoration-none' href='/login'>Login</a>
 					</button>
 						{{/if}}
 
 						{{#if isRegisterPage}}
 					<button type='button' class='btn btn-primary active'>
-						<a class='me-3 py-2 text-dark' href='/register'>Register</a>
+						<a class='py-2 text-dark' href='/register'>Register</a>
 					</button>
 						{{else}}
 					<button type='button' class='btn btn-primary'>
-						<a class='me-3 py-2 text-dark text-decoration-none' href='/register'>Register</a>
+						<a class='py-2 text-dark text-decoration-none' href='/register'>Register</a>
 					</button>
 						{{/if}}
 				</div>
+				{{/if}}
 			</nav>
 		</div>
 	</header>

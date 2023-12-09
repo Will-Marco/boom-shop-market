@@ -4,6 +4,10 @@ import mongoose from "mongoose";
 import { create } from "express-handlebars";
 import flash from "connect-flash";
 import session from "express-session";
+import cookieParser from "cookie-parser";
+
+// MIDDLEWARE
+import varMiddleware from "./middleware/var.js";
 
 // ROUTES
 import AuthRoutes from "./routes/auth.js";
@@ -21,8 +25,10 @@ app.set("views", "./views");
 app.use(static_("public"));
 app.use(urlencoded({ extended: true }));
 app.use(json());
-app.use(session({secret: "will", resave: false, saveUninitialized: false}));
+app.use(cookieParser());
+app.use(session({ secret: "will", resave: false, saveUninitialized: false }));
 app.use(flash());
+app.use(varMiddleware);
 
 app.use(AuthRoutes);
 app.use(ProductsRoutes);
