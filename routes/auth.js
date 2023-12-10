@@ -2,15 +2,11 @@ import { Router } from "express";
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import { generateToken } from "../services/token.js";
+import { checkDoesNotExistToken } from "../middleware/auth.js";
 
 const router = Router();
 
-router.get("/login", (req, res) => {
-  if (req.cookies.token) {
-    res.redirect("/");
-    return;
-  }
-
+router.get("/login", checkDoesNotExistToken, (req, res) => {
   res.render("login", {
     title: "Login",
     isLoginPage: true,
@@ -18,12 +14,7 @@ router.get("/login", (req, res) => {
   });
 });
 
-router.get("/register", (req, res) => {
-  if (req.cookies.token) {
-    res.redirect("/");
-    return;
-  }
-
+router.get("/register", checkDoesNotExistToken, (req, res) => {
   res.render("register", {
     title: "Registerations",
     isRegisterPage: true,
