@@ -5,9 +5,11 @@ import userMiddleware from "../middleware/user.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  const products = await Product.find().lean();
   res.render("index", {
     title: "Boom | Shop",
+    products,
   });
 });
 
@@ -33,7 +35,7 @@ router.post("/add-products", userMiddleware, async (req, res) => {
     res.redirect("/add");
     return;
   }
-  await Product.create({...req.body, user: req.userId})
+  await Product.create({ ...req.body, user: req.userId });
   res.redirect("/");
 });
 
