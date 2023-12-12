@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 router.get("/products", async (req, res) => {
   const user = req.userId ? req.userId.toString() : null;
   const myProducts = await Product.find({ user }).populate("user").lean();
-  
+
   res.render("products", {
     title: "Products",
     isProductsPage: true,
@@ -30,6 +30,14 @@ router.get("/add", checkExistToken, (req, res) => {
     title: "Add Product",
     isAddPage: true,
     addProductError: req.flash("addProductError"),
+  });
+});
+
+router.get("/product/:id", async (req, res) => {
+  const id = req.params.id;
+  const product = await Product.findById(id).populate("user").lean();
+  res.render("product", {
+    product,
   });
 });
 
