@@ -13,11 +13,13 @@
 					</div>
 					<div class='card-footer'>
 						<div class='btn-group btn-group-sm' role='group' aria-label='Basic example'>
-							<a type='button' class='btn btn-outline-primary' href='/product/{{_id}}'>Detail</a>
+							<a class='btn btn-outline-primary' href='/product/{{_id}}'>Detail</a>
 							{{#if @root.token}}
 								{{#ifequal user @root.userId}}
 									<a href='/edit-product/{{_id}}' class='btn btn-outline-secondary'>Edit</a>
-									<button type='button' class='btn btn-outline-danger'>Delete</button>
+									<form action='/delete-product/{{_id}}' method='post' class="m-0 btn btn-outline-danger border-start-0">
+										<button type='submit' class='delete-btn'>Delete</button>
+									</form>
 								{{/ifequal}}
 							{{/if}}
 						</div>

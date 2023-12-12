@@ -67,12 +67,19 @@ router.post("/edit-product/:id", async (req, res) => {
   const id = req.params.id;
   if (!title || !description || !image || !price) {
     req.flash("errorEditProduct", "All fields are required");
-    res.redirect(`/edit-product/${id}`)
+    res.redirect(`/edit-product/${id}`);
     return;
   }
 
   await Product.findByIdAndUpdate(id, req.body, { new: true });
-  res.redirect("/products");
+  res.redirect("/");
+});
+
+router.post("/delete-product/:id", async (req, res) => {
+  const id = req.params.id;
+
+  await Product.findByIdAndRemove(id);
+  res.redirect("/");
 });
 
 export default router;
